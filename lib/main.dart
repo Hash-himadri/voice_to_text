@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 
-
 //This is a demonstration of Github
+//lines changed by Himadri Parikh
 void main() {
   runApp(const MyApp());
 }
@@ -66,7 +65,6 @@ class _SpeechToTextPage extends State<SpeechToTextPage> {
   //   return await permission.status.isGranted;
   // }
 
-
   @override
   void initState() {
     super.initState();
@@ -113,7 +111,7 @@ class _SpeechToTextPage extends State<SpeechToTextPage> {
     setState(() {
       _lastWords = "$_lastWords${result.recognizedWords} ";
       _textController.text = _lastWords;
-      print("You said: "+_lastWords);
+      print("You said: " + _lastWords);
     });
   }
 
@@ -121,48 +119,47 @@ class _SpeechToTextPage extends State<SpeechToTextPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Center(
-          child: ListView(
-            shrinkWrap: true,
-            padding: const EdgeInsets.all(12),
+      child: ListView(
+        shrinkWrap: true,
+        padding: const EdgeInsets.all(12),
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: TextField(
-                      controller: _textController,
-                      minLines: 6,
-                      maxLines: 10,
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.grey.shade300,
-                      ),
-                    ),
+              Expanded(
+                child: TextField(
+                  controller: _textController,
+                  minLines: 6,
+                  maxLines: 10,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.grey.shade300,
                   ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-                  FloatingActionButton.small(
-                    onPressed:() async {
-                      // final status = await microphonePermission.request();
-                      // If not yet listening for speech start, otherwise stop
-                      // if (status.isGranted) {
-                        _speechToText.isNotListening
-                            ? _startListening()
-                            : _stopListening();
-                      // }
-                    },
-                    tooltip: 'Listen',
-                    backgroundColor: Colors.blueGrey,
-                    child: Icon(_speechToText.isNotListening
-                        ? Icons.mic_off
-                        : Icons.mic),
-                  )
-                ],
+                ),
               ),
+              const SizedBox(
+                width: 8,
+              ),
+              FloatingActionButton.small(
+                onPressed: () async {
+                  // final status = await microphonePermission.request();
+                  // If not yet listening for speech start, otherwise stop
+                  // if (status.isGranted) {
+                  _speechToText.isNotListening
+                      ? _startListening()
+                      : _stopListening();
+                  // }
+                },
+                tooltip: 'Listen',
+                backgroundColor: Colors.blueGrey,
+                child: Icon(
+                    _speechToText.isNotListening ? Icons.mic_off : Icons.mic),
+              )
             ],
           ),
-        ));
+        ],
+      ),
+    ));
   }
 }
