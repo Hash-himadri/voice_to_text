@@ -1,6 +1,6 @@
 # voice_to_text
 
-A new Flutter project that helps to convert the speech to text.
+A new project that helps to convert the speech to text.
 
 ## Getting Started
 
